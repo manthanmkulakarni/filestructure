@@ -75,6 +75,42 @@ class Block{
         }
     }
 
+    void mru(){
+	int ptr=0,flg;
+	for(int i=0;i<n;i++){
+		buf[i]=-1;
+	
+	}
+	for(int i=0;i<l;i++){
+		if(buf[ptr]==-1){
+			buf[ptr]=ar[i];
+			ptr=(ptr+1)%n;
+		}
+		else{
+			flg=ptr;
+
+			for(int j=i;j>=0;j--){
+				for(int p=0;p<n;p++){
+					if(buf[p]==ar[j]){
+						flg=p;
+						goto replace;
+					}
+				}
+			}replace:
+			buf[flg]=ar[i];
+			
+
+		}
+
+		for(int j=0;j<n;j++)cout<<buf[j]<<" ";
+
+		cout<<endl;
+		
+	}
+
+
+    }
+
 };
 
 int main(){
@@ -85,6 +121,8 @@ int main(){
     b.lru();
     cout<<"FIFO\n";
     b.fifo();
+    cout<<"MRU\n";
+    b.mru();
 
     return 0;
 }
